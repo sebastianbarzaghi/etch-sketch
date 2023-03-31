@@ -41,3 +41,8 @@
     width: auto;
     border: 1px solid red;
 }
+
+.clicked {
+    background-color: blue;
+    color: white;
+}
