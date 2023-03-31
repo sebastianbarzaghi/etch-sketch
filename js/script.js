@@ -13,25 +13,58 @@ for (let i = 0; i < 16; i++) {
     grid.appendChild(gridRow);
 }
 
-// draw
 const gridCells = document.querySelectorAll(".cell");
 const colorPicker = document.querySelector(".colorPicker");
-let mouseDown = false;
+
+let drawActive = false;
+let eraserActive = false;
+
+//eraser
+const eraserBtn = document.querySelector(".eraserBtn");
+eraserBtn.addEventListener("click", function() {
+    if (eraserActive) {
+        eraserActive = false;
+        drawActive = true;
+        eraserBtn.classList.remove("clicked");
+    } else {
+        eraserActive = true;
+        drawActive = false;
+        eraserBtn.classList.add("clicked");
+    };
+});
+
+// draw or erase
 gridCells.forEach(function(cell) {
     cell.addEventListener("mousedown", function() {
-        mouseDown = true;
-        //black
-        cell.style.backgroundColor = colorPicker.value;
+        if (!drawActive) {
+            drawActive = true;
+            //color picker
+            cell.style.backgroundColor = colorPicker.value;
+        } else {
+            if (eraserActive) {
+                cell.style.removeProperty("background-color");
+            }
+        };
     });
     cell.addEventListener("mousemove", function() {
-        if(mouseDown === true) {
+        if (drawActive) {
+            //color picker
             cell.style.backgroundColor = colorPicker.value;
+        } else {
+            if (eraserActive) {
+                cell.style.removeProperty("background-color");
+            }
         };
     });
     cell.addEventListener("mouseup", function() {
-        mouseDown = false;
-    })
+        if(drawActive) {
+            drawActive = false;
+        };
+    });
 })
+
+
+
 
 
 //clear
