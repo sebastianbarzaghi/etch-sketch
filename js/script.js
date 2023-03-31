@@ -13,18 +13,19 @@ for (let i = 0; i < 16; i++) {
     grid.appendChild(gridRow);
 }
 
-// hover black
+// draw
 const gridCells = document.querySelectorAll(".cell");
+const colorPicker = document.querySelector(".colorPicker");
 let mouseDown = false;
 gridCells.forEach(function(cell) {
     cell.addEventListener("mousedown", function() {
         mouseDown = true;
         //black
-        cell.style.backgroundColor = "black";
+        cell.style.backgroundColor = colorPicker.value;
     });
     cell.addEventListener("mousemove", function() {
         if(mouseDown === true) {
-            cell.style.backgroundColor = "black";
+            cell.style.backgroundColor = colorPicker.value;
         };
     });
     cell.addEventListener("mouseup", function() {
