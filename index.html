@@ -13,15 +13,16 @@
             <h1>Titolo prova</h1>
             <label for="colorPicker">Pick a color:</label>
             <input type="color" id="colorPicker" class="colorPicker">
-            <button>Fill</button>
-            <button>Grabber</button>
-            <button class="eraserBtn">Eraser</button>
-            <button>Rainbow</button>
-            <button>Shading</button>
-            <button>Lighten</button>
+            <button class="addFunc randomBtn">Rainbow</button>
+            <button class="addFunc grabberBtn" disabled>Grabber</button>
+            <button class="addFunc eraserBtn" disabled>Eraser</button>
+            <button class="addFunc shadeBtn" disabled>Shading</button>
+            <button class="addFunc lightBtn" disabled>Lighten</button>
+            <button class="addFunc fillBtn" disabled>Fill</button>
+            <button class="addFunc toggleGrid" disabled>Toggle grid</button>
             <label for="sliderGrid" class="labelSliderGrid"></label>
-            <input type="range" min="0" max="100" value="50" id="sliderGrid" class="sliderGrid">
-            <button class="clearBtn">Clear</button>
+            <input disabled type="range" min="0" max="100" value="50" id="sliderGrid" class="sliderGrid">
+            <button class="clearBtn" disabled>Clear</button>
         </div>
         <div class="column2">
             <div class="grid">

@@ -26,7 +26,10 @@
 
 .grid {
     display: flex;
-    border: 1px solid red;
+}
+
+.toggled {
+    border: 1px solid black; /*su grid e su cell*/
 }
 
 .gridRow {
@@ -39,7 +42,6 @@
     padding: 10px;
     height: 25px;
     width: auto;
-    border: 1px solid red;
 }
 
 .clicked {
