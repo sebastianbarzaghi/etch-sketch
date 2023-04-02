@@ -55,16 +55,20 @@ gridCells.forEach(function(cell) {
             drawActive = true;
             if (randomActive) {
                 cell.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+            } else if (eraserActive) {
+                cell.style.removeProperty("background-color");
             } else {
                 //color picker
                 cell.style.backgroundColor = colorPicker.value;
             };
-        };
+        }
     });
     cell.addEventListener("mousemove", function() {
         if (drawActive) {
             if (randomActive) {
                 cell.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+            } else if (eraserActive) {
+                cell.style.removeProperty("background-color");
             } else {
                 //color picker
                 cell.style.backgroundColor = colorPicker.value;
@@ -84,6 +88,10 @@ const randomBtn = document.querySelector(".randomBtn");
 randomBtn.addEventListener("click", function() {
     if (!randomActive) {
         randomActive = true;
+        if (eraserActive) {
+            eraserActive = false;
+            eraserBtn.classList.remove("clicked");
+        };
         randomBtn.classList.add("clicked");
     } else {
         randomActive = false;
@@ -92,6 +100,22 @@ randomBtn.addEventListener("click", function() {
 });
 
 //eraser
+let eraserActive = false;
+const eraserBtn = document.querySelector(".eraserBtn");
+eraserBtn.addEventListener("click", function() {
+    if (!eraserActive) {
+        if (randomActive) {
+            randomActive = false;
+            randomBtn.classList.remove("clicked");
+        };
+        eraserActive = true;
+        eraserBtn.classList.add("clicked");
+    } else {
+        eraserActive = false;
+        eraserBtn.classList.remove("clicked");
+    }
+})
+
 //shading
 //lighten
 //toggle grid
