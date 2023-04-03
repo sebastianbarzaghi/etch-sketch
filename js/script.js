@@ -48,6 +48,22 @@ funcButtons.forEach(function(btn) {
 */
 
 let toggleGridActive = false;
+//toggle grid
+const toggleGridBtn = document.querySelector(".toggleGrid");
+toggleGridBtn.addEventListener("click", function() {
+    if (!toggleGridActive) {
+        toggleGridActive = true;
+        toggleGridBtn.classList.add("clicked");        
+    } else {
+        toggleGridActive = false;
+        toggleGridBtn.classList.remove("clicked");
+    };
+    for (const cell of gridCells) {
+        cell.classList.toggle("toggled");
+    }
+});
+
+
 
 // draw
 let drawActive = false;
@@ -82,9 +98,7 @@ gridCells.forEach(function(cell) {
             drawActive = false;
         };
     });
-    if (toggleGridActive) {
-        cell.classList.add("toggled");
-    };
+
 });
 
 // random
@@ -118,22 +132,13 @@ eraserBtn.addEventListener("click", function() {
     } else {
         eraserActive = false;
         eraserBtn.classList.remove("clicked");
-    }
-})
+    };
+});
+
 
 //shading
 //lighten
-//toggle grid
-const toggleGridBtn = document.querySelector(".toggleGrid");
-toggleGridBtn.addEventListener("click", function() {
-    if (!toggleGridActive) {
-        toggleGridActive = true;
-        toggleGridBtn.classList.add("clicked");
-    } else {
-        toggleGridActive = false;
-        toggleGridBtn.classList.remove("clicked");
-    };
-});
+
 
 /* grabber
 let grabberActive = false;
