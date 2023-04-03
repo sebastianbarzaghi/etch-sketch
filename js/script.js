@@ -17,8 +17,7 @@ const gridCells = document.querySelectorAll(".cell");
 const colorPicker = document.querySelector(".colorPicker");
 
 //let eraserActive = false;
-//let erasing = false;
-
+let shadeActive = false;
 /*
 const eraserBtn = document.querySelector(".eraserBtn");
 eraserBtn.addEventListener("click", function() {
@@ -47,24 +46,6 @@ funcButtons.forEach(function(btn) {
 })
 */
 
-let toggleGridActive = false;
-//toggle grid
-const toggleGridBtn = document.querySelector(".toggleGrid");
-toggleGridBtn.addEventListener("click", function() {
-    if (!toggleGridActive) {
-        toggleGridActive = true;
-        toggleGridBtn.classList.add("clicked");        
-    } else {
-        toggleGridActive = false;
-        toggleGridBtn.classList.remove("clicked");
-    };
-    for (const cell of gridCells) {
-        cell.classList.toggle("toggled");
-    }
-});
-
-
-
 // draw
 let drawActive = false;
 gridCells.forEach(function(cell) {
@@ -75,6 +56,8 @@ gridCells.forEach(function(cell) {
                 cell.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
             } else if (eraserActive) {
                 cell.style.removeProperty("background-color");
+            } else if (shadeActive) {
+                cell.style.backgroundColor = `#${colorPicker.value - 1}`;
             } else {
                 //color picker
                 cell.style.backgroundColor = colorPicker.value;
@@ -87,6 +70,8 @@ gridCells.forEach(function(cell) {
                 cell.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
             } else if (eraserActive) {
                 cell.style.removeProperty("background-color");
+            } else if (shadeActive) {
+                cell.style.backgroundColor = `#${colorPicker.value - 100000000}`;
             } else {
                 //color picker
                 cell.style.backgroundColor = colorPicker.value;
@@ -98,7 +83,6 @@ gridCells.forEach(function(cell) {
             drawActive = false;
         };
     });
-
 });
 
 // random
@@ -135,10 +119,46 @@ eraserBtn.addEventListener("click", function() {
     };
 });
 
+//clear
+const clearBtn = document.querySelector(".clearBtn");
+clearBtn.addEventListener("click", function() {
+    gridCells.forEach(function(cell) {
+        if (cell.style.hasOwnProperty("background-color")) {
+            cell.style.removeProperty("background-color");
+        };
+    });
+});
+
+//toggle grid
+let toggleGridActive = false;
+const toggleGridBtn = document.querySelector(".toggleGrid");
+toggleGridBtn.addEventListener("click", function() {
+    for (const cell of gridCells) {
+        cell.classList.toggle("toggled");
+    };
+    if (!toggleGridActive) {
+        toggleGridActive = true;
+        toggleGridBtn.classList.add("clicked");        
+    } else {
+        toggleGridActive = false;
+        toggleGridBtn.classList.remove("clicked");
+    };
+});
 
 //shading
-//lighten
 
+const shadeBtn = document.querySelector(".shadeBtn");
+shadeBtn.addEventListener("click", function() {
+    if (!shadeActive) {
+        shadeActive = true;
+        shadeBtn.classList.add("clicked");
+    } else {
+        shadeActive = false;
+        shadeBtn.classList.add("clicked");
+    };
+});
+
+//lighten
 
 /* grabber
 let grabberActive = false;
@@ -154,15 +174,3 @@ grabberBtn.addEventListener("click", function() {
     };
 });
 */
-
-
-
-//clear
-const clearBtn = document.querySelector(".clearBtn");
-clearBtn.addEventListener("click", function() {
-    gridCells.forEach(function(cell) {
-        if(cell.style.hasOwnProperty("background-color")) {
-            cell.style.removeProperty("background-color");
-        }
-    })
-})
